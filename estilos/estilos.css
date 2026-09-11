@@ -296,3 +296,15 @@ header h1 {
         max-height: 80vh;
     }
 }
+
+/* Línea vertical en celulares */
+.linea-tiempo::before {
+    content: '';
+    position: absolute;
+    top: 80px;
+    bottom: 0; /* Corta el listón exactamente al terminar la última tarjeta */
+    left: 28px;
+    width: 4px;
+    background: linear-gradient(180deg, #ff4d6d 0%, #f4a261 50%, #2a9d8f 100%);
+    border-radius: 2px;
+}
