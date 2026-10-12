@@ -1,0 +1,298 @@
+/* ==========================================
+   1. RESETS Y ESTILOS GENERALES
+   ========================================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fdf0f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #ff4d6d 0%, #ff758c 100%);
+    color: white;
+    padding: 30px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+/* ==========================================
+   2. TARJETA DESTACADA (2 MESES GAEL)
+   ========================================== */
+.tarjeta-gael {
+    background-color: #ffffff;
+    border: 2px dashed #ff4d6d;
+    margin: 25px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(255, 77, 109, 0.1);
+}
+
+.tarjeta-gael p {
+    color: #ff4d6d;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   3. LÍNEA DE TIEMPO (MÓVIL POR DEFECTO)
+   ========================================== */
+.linea-tiempo {
+    position: relative;
+    max-width: 550px;
+    margin: 20px auto;
+    padding: 10px 15px 40px 15px;
+}
+
+.linea-tiempo h2 {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #2b2d42;
+    margin-bottom: 30px;
+}
+
+/* Línea vertical en celulares */
+.linea-tiempo::before {
+    content: '';
+    position: absolute;
+    top: 80px;
+    bottom: 40px;
+    left: 28px;
+    width: 4px;
+    background: linear-gradient(180deg, #ff4d6d 0%, #f4a261 50%, #2a9d8f 100%);
+    border-radius: 2px;
+}
+
+.tarjeta-historia {
+    position: relative;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-left: 35px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    text-align: left;
+    
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tarjeta-historia.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Punto en la línea vertical */
+.tarjeta-historia::before {
+    content: '';
+    position: absolute;
+    left: -29px;
+    top: 22px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 4px solid #ff4d6d;
+    box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.2);
+}
+
+.tarjeta-historia:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Imágenes dentro de la tarjeta */
+.tarjeta-historia img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover; /* Recorta perfectamente la imagen en la tarjeta */
+    object-position: center;
+    border-radius: 12px;
+    margin: 12px 0 8px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta-historia img:hover {
+    transform: scale(1.02);
+}
+
+.tarjeta-historia p {
+    font-size: 0.98rem;
+    color: #4a5568;
+    line-height: 1.5;
+    margin: 10px 0 0 0;
+}
+
+/* Badges de etapa */
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.badge.peligro { background: #ff4d6d; }
+.badge.proceso { background: #f4a261; }
+.badge.exito   { background: #2a9d8f; }
+
+/* ==========================================
+   4. BOTÓN Y CORAZONES FLOTANTES
+   ========================================== */
+.contenedor-amor {
+    text-align: center;
+    margin: 30px 0 40px 0;
+}
+
+.btn-amor {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255, 117, 140, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-amor:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(255, 117, 140, 0.5);
+}
+
+.btn-amor:active {
+    transform: scale(0.95);
+}
+
+.corazon-flotante {
+    position: fixed;
+    bottom: -20px;
+    font-size: 26px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: flotar 3s linear forwards;
+}
+
+@keyframes flotar {
+    0% {
+        transform: translateY(0) scale(0.8) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.4) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+   5. MODAL VISOR EN PANTALLA COMPLETA
+   ========================================== */
+.modal-visor {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+}
+
+/* Ajuste clave para que la imagen 6 o fotos grandes no salgan desbordadas */
+.modal-visor img {
+    max-width: 85vw;
+    max-height: 75vh;
+    width: auto;
+    height: auto;
+    object-fit: contain; 
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================
+   6. RESPONSIVO PARA TABLETS Y COMPUTADORAS
+   ========================================== */
+@media (min-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .linea-tiempo {
+        max-width: 850px;
+        padding: 20px 20px 50px 20px;
+    }
+
+    /* Centra la línea vertical en pantallas grandes */
+    .linea-tiempo::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Ancho de tarjeta para distribución en 2 columnas */
+    .tarjeta-historia {
+        width: 45%;
+        margin-left: 0;
+    }
+
+    /* Alterna tarjetas izquierda / derecha */
+    .tarjeta-historia:nth-of-type(odd) {
+        margin-right: auto;
+    }
+
+    .tarjeta-historia:nth-of-type(even) {
+        margin-left: auto;
+    }
+
+    /* Alinear puntos de la línea según el lado */
+    .tarjeta-historia:nth-of-type(odd)::before {
+        left: auto;
+        right: -31px;
+    }
+
+    .tarjeta-historia:nth-of-type(even)::before {
+        left: -31px;
+    }
+
+    .tarjeta-historia img {
+        height: 320px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .linea-tiempo {
+        max-width: 950px;
+    }
+
+    .tarjeta-historia img {
+        height: 350px;
+    }
+
+    .modal-visor img {
+        max-height: 80vh;
+    }
+}
